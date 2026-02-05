@@ -1,4 +1,10 @@
-from django.http import HttpResponse
+import requests
+from django.http import JsonResponse
 
 def home(request):
-    return HttpResponse("NAHB Django app is running")
+    response = requests.get("http://127.0.0.1:5000/api/status")
+    data = response.json()
+    return JsonResponse({
+        "message": "Django received this from Flask",
+        "flask_response": data
+    })

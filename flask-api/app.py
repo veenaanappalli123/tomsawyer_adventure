@@ -2,10 +2,11 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-@app.route("/")
-def home():
+@app.route("/api/status")
+def status():
     return jsonify({
-        "message": "NAHB Flask API is running"
+        "service": "Flask API",
+        "status": "running"
     })
 
 if __name__ == "__main__":
