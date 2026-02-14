@@ -1,26 +1,31 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>NAHB Stories</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+
+<div class="navbar">
+    <a href="/">Home</a>
+    <a href="/stats/">Statistics</a>
+</div>
+
+<div class="container">
     <h1>Available Stories</h1>
 
-    <ul>
-        {% for story in stories %}
-            <li>
-    <a href="{% url 'play_story' story.id %}">
-        <strong>{{ story.title }}</strong>
-    </a><br>
-    {{ story.description }}<br>
-    Status: {{ story.status }}
-</li>
-
-            
-        {% empty %}
-            <li>No stories available.</li>
-        {% endfor %}
-    </ul>
+    {% for story in stories %}
+        <div class="story-card">
+            <a href="{% url 'play_story' story.id %}">
+                {{ story.title }}
+            </a>
+            <p>{{ story.description }}</p>
+        </div>
+    {% empty %}
+        <p>No stories available.</p>
+    {% endfor %}
+</div>
 
 </body>
 </html>

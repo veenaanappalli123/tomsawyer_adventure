@@ -120,6 +120,12 @@ def create_choice(page_id):
 
     return jsonify(new_choice.to_dict()), 201
 
+@app.route("/api/choices/<int:choice_id>", methods=["DELETE"])
+def delete_choice(choice_id):
+    choice = Choice.query.get_or_404(choice_id)
+    db.session.delete(choice)
+    db.session.commit()
+    return jsonify({"message": "Choice deleted"})
 
 
 # Test route

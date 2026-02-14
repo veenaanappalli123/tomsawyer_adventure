@@ -1,28 +1,37 @@
-<!doctype html>
+{% load static %}
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Story Page</title>
-  </head>
-  <body>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="navbar">
+    <a href="/">Home</a>
+    <a href="/stats/">Statistics</a>
+</div>
+
+<div class="container">
+
     <h2>{{ page.text }}</h2>
 
     {% if page.choices %}
-    <ul>
-      {% for choice in page.choices %}
-      <li>
-        <a
-          href="{% url 'play_story' page.story_id %}?page_id={{ choice.next_page_id }}"
-        >
-          {{ choice.text }}
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
+        <div>
+            {% for choice in page.choices %}
+                <a class="button" href="{% url 'play_story' page.story_id %}?page_id={{ choice.next_page_id }}">
+                    {{ choice.text }}
+                </a>
+                <br><br>
+            {% endfor %}
+        </div>
     {% else %}
-    <h3>Ending: {{ page.ending_label }}</h3>
-{% endif %}
+        <div class="ending">
+            <h3>Ending: {{ page.ending_label }}</h3>
+        </div>
+    {% endif %}
 
-    <br />
-    <a href="/">Back to Stories</a>
-  </body>
+</div>
+
+</body>
 </html>
