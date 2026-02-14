@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NAHB Stories</title>
+</head>
+<body>
+    <h1>Available Stories</h1>
+
+    <ul>
+        {% for story in stories %}
+            <li>
+    <a href="{% url 'play_story' story.id %}">
+        <strong>{{ story.title }}</strong>
+    </a><br>
+    {{ story.description }}<br>
+    Status: {{ story.status }}
+</li>
+
+            
+        {% empty %}
+            <li>No stories available.</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

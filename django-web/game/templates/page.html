@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Story Page</title>
+  </head>
+  <body>
+    <h2>{{ page.text }}</h2>
+
+    {% if page.choices %}
+    <ul>
+      {% for choice in page.choices %}
+      <li>
+        <a
+          href="{% url 'play_story' page.story_id %}?page_id={{ choice.next_page_id }}"
+        >
+          {{ choice.text }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <h3>Ending: {{ page.ending_label }}</h3>
+{% endif %}
+
+    <br />
+    <a href="/">Back to Stories</a>
+  </body>
+</html>

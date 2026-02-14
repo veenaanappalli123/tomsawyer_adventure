@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Statistics</title>
+</head>
+<body>
+
+<h1>Story Statistics</h1>
+
+<h2>Total Plays Per Story</h2>
+<ul>
+    {% for stat in story_stats %}
+        <li>
+            Story {{ stat.story_id }} → {{ stat.total_plays }} plays
+        </li>
+    {% empty %}
+        <li>No plays recorded yet.</li>
+    {% endfor %}
+</ul>
+
+<h2>Ending Distribution</h2>
+<ul>
+    {% for ending in ending_stats %}
+        <li>
+    Story {{ ending.story_id }} →
+    Ending Page {{ ending.ending_page_id }} →
+    {{ ending.count }} times
+    ({{ ending.percentage }}%)
+</li>
+
+    {% empty %}
+        <li>No endings recorded yet.</li>
+    {% endfor %}
+</ul>
+
+<br>
+<a href="/">Back to Home</a>
+
+</body>
+</html>
